@@ -161,7 +161,7 @@ def randomForest():
 
     import pandas as pd
 
-    from sklearn import tree
+    from sklearn import ensemble
     from sklearn.metrics import accuracy_score
     from sklearn.model_selection import train_test_split
 
@@ -175,9 +175,8 @@ def randomForest():
     x1, x2, y1, y2 = train_test_split(x, y)
     # creates training x and y and testing x and y from og x and y
     
-    playoffForest = tree.DecisionTreeClassifier().fit(x1, y1)
-    #clf is classification tree
-    # fit model based on training x and y
+    playoffForest = ensemble.RandomForestClassifier().fit(x1, y1)
+ 
 
     pred = playoffForest.predict(x2)
     #predict based on x2

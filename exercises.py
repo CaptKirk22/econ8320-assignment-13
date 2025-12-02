@@ -169,14 +169,17 @@ def randomForest():
 
     data = pd.read_csv("https://raw.githubusercontent.com/dustywhite7/Econ8320/master/AssignmentData/assignment12Data.csv")
 
-    y, x = pt.dmatrices("Playoffs ~ -1 + Revenues + TVDeal + LaborContract + OperatingIncome+DebtToValue+Value", data = data)
-    # -1 in patsy means no intercept column bc most ml models expect or like intercept models
+    data1 = data.sample(100)
+
+    y, x = pt.dmatrices("Playoffs ~ -1 + Revenues + TVDeal + LaborContract + OperatingIncome+DebtToValue+Value", data = data1)
+
+    y
 
     x1, x2, y1, y2 = train_test_split(x, y)
-    # creates training x and y and testing x and y from og x and y
     
     playoffForest = ensemble.RandomForestClassifier().fit(x1, y1)
- 
+
+    y2
 
     pred = playoffForest.predict(x2)
     #predict based on x2

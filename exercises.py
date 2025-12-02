@@ -169,15 +169,14 @@ def randomForest():
 
     data = pd.read_csv("https://raw.githubusercontent.com/dustywhite7/Econ8320/master/AssignmentData/assignment12Data.csv")
 
-    data1 = data.sample(100)
-
-    y, x = pt.dmatrices("Playoffs ~ -1 + Revenues + TVDeal + LaborContract + OperatingIncome+DebtToValue+Value", data = data1)
+    y, x = pt.dmatrices("Playoffs ~ -1 + Revenues + TVDeal + LaborContract + OperatingIncome+DebtToValue+Value", data = data)
 
     y
 
     x1, x2, y1, y2 = train_test_split(x, y)
     
-    playoffForest = ensemble.RandomForestClassifier().fit(x1, y1)
+    playoffForest = ensemble.RandomForestClassifier(n_estimators = 100).fit(x1, y1.ravel())
+    #ravel() flattens the 2d matrix to a 1d matrix
 
     y2
 
